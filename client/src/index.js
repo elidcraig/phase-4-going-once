@@ -18,7 +18,7 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    </RecoilRoot> 
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );
