@@ -8,6 +8,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.integer :starting_bid
       t.datetime :starting_time
       t.datetime :closing_time
+      t.string :category
 
       t.timestamps
     end

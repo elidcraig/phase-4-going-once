@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2022_07_11_160554) do
     t.integer "starting_bid"
     t.datetime "starting_time"
     t.datetime "closing_time"
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
