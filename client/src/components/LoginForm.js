@@ -32,6 +32,7 @@ function LoginForm() {
       .then(res => {
         if (res.ok) {
           res.json().then(user => {
+            //clear login form
             setCurrentUser(user.id)
             navigate('/dashboard', { replace: true })
           })

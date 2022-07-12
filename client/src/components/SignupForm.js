@@ -1,10 +1,14 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { signupFormState } from '../state/SignupFormState';
+import { currentUserState } from '../state/CurrentUserState'
 
 function SignupForm() {
+  const navigate = useNavigate()
 
   const [signupForm, setSignupForm] = useRecoilState(signupFormState)
+  const setCurrentUser = useSetRecoilState(currentUserState)
 
   console.log(signupForm)
 
@@ -12,6 +16,37 @@ function SignupForm() {
   
   const handleFormSubmit = e => {
     e.preventDefault()
+
+    const config = {
+      username: signupForm.username,
+      password: signupForm.password,
+      password_confirmation: signupForm.passwordConfirm,
+      email: signupForm.email,
+      full_name: signupForm.fullName,
+      avatar_url: signupForm.avatarUrl,
+      address: signupForm.address
+    }
+
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(config)
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(user => {
+            //clear signup form
+            setCurrentUser(user.id)
+            navigate('/dashboard', { replace: true })
+          })
+        } else {
+          res.json().then(errors => {
+            console.error(errors)
+          })
+        }
+      })
   }
 
   return (
