@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react'
 import { useRecoilValue, useRecoilState } from 'recoil'
+import { currentUserState } from '../state/CurrentUserState'
 
 function UserBids() {
 
+  const userId = useRecoilValue(currentUserState)
 
-//   const user = useRecoilValue(currentUser)
-// useEffect(() => {
-//   fetch(`/me/bids`)
-//       .then(res => res.json())
-//       .then(console.log)
-//   }, [])
+  useEffect(() => {
+    fetch(`/dashboard`)
+        .then(res => res.json())
+        .then(console.log)
+  }, [])
 
 
 

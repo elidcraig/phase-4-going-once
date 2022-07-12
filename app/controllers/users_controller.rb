@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :current_user, only: [:show]
+  before_action :current_user, only: [:show, :dashboard]
 
   def index
     render json: User.all
@@ -34,6 +34,13 @@ class UsersController < ApplicationController
   #   head :no_content
   # end
 
+  def dashboard
+    if @current_user
+      render json: @current_user, serializer: 
+    else
+      render json: {}, status: 401
+    end
+  end
 
   private
 
