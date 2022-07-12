@@ -36,13 +36,13 @@ function Login() {
         <label>Username</label>
         <input type='text' value={username} onChange={handleUsernameChange}/>
         <label>Password</label>
-        <input type='text' value={password} onChange={handlePasswordChange}/>
+        <input type='password' value={password} onChange={handlePasswordChange}/>
         <label>Confirm Password</label>
-        <input type='text' value={passwordConfirm} onChange={handlePasswordConfirmChange}/>
+        <input type='password' value={passwordConfirm} onChange={handlePasswordConfirmChange}/>
         <input type='submit' />
       </form>
     </div>
-   );
+  );
 }
 
 export default Login;
