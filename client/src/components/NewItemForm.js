@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useRecoilState } from 'recoil'
-import { newItemState } from './state/NewItemState'
+import { newItemState } from '../state/NewItemState'
 
 function NewItemForm() {
 
@@ -31,16 +31,18 @@ function NewItemForm() {
             category: newItem.category
         }
     
-    const config = {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(newItem)
-        }
-    
-    fetch("http://localhost:5432/items", config)
-    .then(resp => resp.json())
-    .then((newItem) => {addItem(newItem)
-    setNewItem(initialItem)})
+        const config = {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newItem)
+            }
+        
+        fetch("http://localhost:5432/items", config)
+        .then(resp => resp.json())
+        .then((newItem) => {
+            // addItem(newItem)
+            setNewItem(initialItem)
+        })
     }
 
     const handleChange = (event) => {

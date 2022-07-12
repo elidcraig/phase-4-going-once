@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil'
 
-import { itemsState } from './state/CardState'
+import { itemsState } from '../state/CardState'
 
 function AuctionCard () {
 
