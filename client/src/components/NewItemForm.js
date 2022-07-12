@@ -1,9 +1,12 @@
 import React from 'react'
 
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { newItemState } from '../state/NewItemState'
+import { currentUserState } from '../state/CurrentUserState'
 
 function NewItemForm() {
+
+    const currentUserId = useRecoilValue(currentUserState)
 
     const initialItem = {
         user_id: '',
@@ -20,8 +23,8 @@ function NewItemForm() {
         
     const handleSubmit = (event) => {
         event.preventDefault()
-        const newItem = {
-            user_id: newItem.user_id,
+        const postItem = {
+            user_id: currentUserId,
             name: newItem.name,
             description: newItem.description,
             image_url: newItem.image_url,
@@ -30,14 +33,16 @@ function NewItemForm() {
             closing_time: newItem.closing_time,
             category: newItem.category
         }
+
+        console.log(postItem)
     
         const config = {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(newItem)
+                body: JSON.stringify(postItem)
             }
         
-        fetch("http://localhost:5432/items", config)
+        fetch("/items", config)
         .then(resp => resp.json())
         .then((newItem) => {
             // addItem(newItem)
