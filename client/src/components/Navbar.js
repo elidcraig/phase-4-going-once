@@ -10,10 +10,7 @@ function Navbar() {
 				<button>New Auction</button>
 			</NavLink>
 			<NavLink to="search">
-				<button>Search</button>
-			</NavLink>
-			<NavLink to="account">
-				<button>Account</button>
+				<button>Explore</button>
 			</NavLink>
 		</div>
 	);
