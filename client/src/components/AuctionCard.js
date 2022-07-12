@@ -1,11 +1,11 @@
 import React from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 
-import { cardState } from './state/CardState'
+import { itemsState } from './state/CardState'
 
 function AuctionCard () {
 
-const [cardDetails, setCardDetails] = useRecoilState(cardState)
+const cardDetails = useRecoilValue(itemsState)
 
 return (
     <div className="card">
