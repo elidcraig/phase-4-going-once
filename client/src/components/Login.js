@@ -35,7 +35,7 @@ function Login() {
         if (res.ok) {
           res.json().then(user => {
             setCurrentUser(user.id)
-            navigate('/', { replace: true })
+            navigate('/dashboard', { replace: true })
           })
         } else {
           res.json().then(errors => {

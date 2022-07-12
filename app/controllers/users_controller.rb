@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def dashboard
     if @current_user
-      render json: @current_user, serializer: 
+      render json: @current_user, serializer: UserDashboardSerializer
     else
       render json: {}, status: 401
     end
