@@ -1,7 +1,7 @@
 import React from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { newItemState } from '../state/NewItemState'
-import { cardState } from '../state/CardState'
+
+import { useRecoilState } from 'recoil'
+import { newItemState } from './state/NewItemState'
 
 function NewItemForm() {
 
@@ -11,7 +11,7 @@ function NewItemForm() {
         description: '',
         image_url: '',
         starting_bid: '',
-        starting_tiime: '',
+        starting_time: '',
         closing_time: '',
         category: ''
         }
@@ -37,7 +37,7 @@ function NewItemForm() {
             body: JSON.stringify(newItem)
         }
     
-    fetch("http://localhost:5432", config)
+    fetch("http://localhost:5432/items", config)
     .then(resp => resp.json())
     .then((newItem) => {addItem(newItem)
     setNewItem(initialItem)})
