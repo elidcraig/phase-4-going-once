@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { newItemState } from './state/NewItemState'
-import { cardState } from './state/CardState'
+import { newItemState } from '../state/NewItemState'
+import { cardState } from '../state/CardState'
 
 function NewItemForm() {
 
