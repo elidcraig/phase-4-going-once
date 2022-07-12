@@ -17,7 +17,7 @@ function App() {
 	    <Header />
 			<Routes>
 				<Route exact path="/" element={<Home />} />
-				<Route exact path="my-bids" element={<UserBids />} />
+				<Route exact path="dashboard" element={<UserBids />} />
 				<Route exact path="new-item" element={<NewItemForm />} />
 				<Route exact path="search" element={<Search />} />
 				<Route exact path="account" element={<Account />} />
