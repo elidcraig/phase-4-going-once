@@ -5,11 +5,13 @@ import Home from './Home'
 import Header from './Header';
 import Navbar from './Navbar'
 import Search from "./Search";
+import { RecoilRoot } from "recoil";
 
 function App() {
 	return (
 		<div className="App">
-      <Header />
+      <RecoilRoot>
+	  <Header />
 			<Routes>
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="my-bids" element={<Search />} />
@@ -18,6 +20,7 @@ function App() {
 				<Route exact path="account" element={<Search />} />
 			</Routes>
       <Navbar />
+	  </RecoilRoot>
 		</div>
 	);
 }
