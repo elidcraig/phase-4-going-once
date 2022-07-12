@@ -17,7 +17,7 @@ function SignupForm() {
   return (
     <div>
       <h1>Sign Up</h1>
-      <form onSubmit={handleFormSubmit}>
+      <form className='login-form' onSubmit={handleFormSubmit}>
         <label>Username</label>
         <input type='text' name='username' value={signupForm.username} onChange={handleFormChange}/>
         <label>Email</label>

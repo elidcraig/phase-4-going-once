@@ -46,7 +46,7 @@ function LoginForm() {
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form className='login-form' onSubmit={handleSubmit}>
         <label>Username</label>
         <input type='text' name='username' value={loginForm.username} onChange={handleFormChange}/>
         <label>Password</label>
