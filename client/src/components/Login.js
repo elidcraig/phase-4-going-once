@@ -1,24 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil';
-import { usernameState, passwordState, passwordConfirmState } from '../state/LoginState'
+import { loginFormState } from '../state/LoginFormState'
 import { currentUserState } from '../state/CurrentUserState'
 
 function Login() {
-  const [username, setUsername] = useRecoilState(usernameState)
-  const [password, setPassword] = useRecoilState(passwordState)
-  const [passwordConfirm, setPasswordConfirm] = useRecoilState(passwordConfirmState)
+  let navigate = useNavigate()
+
+  const [loginForm, setLoginForm] = useRecoilState(loginFormState)
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
 
-  const handleUsernameChange = e => setUsername(e.target.value)
-  const handlePasswordChange = e => setPassword(e.target.value)
-  const handlePasswordConfirmChange = e => setPasswordConfirm(e.target.value)
+  const handleFormChange = e => {
+    setLoginForm({...loginForm, [e.target.name]: e.target.value})
+  }
 
   const handleSubmit = e => {
     e.preventDefault()
     const config = {
-      username,
-      password,
-      password_confirmation: passwordConfirm
+      username: loginForm.username,
+      password: loginForm.password,
+      password_confirmation: loginForm.passwordConfirm
     }
     console.log(config)
 
@@ -34,6 +35,7 @@ function Login() {
         if (res.ok) {
           res.json().then(user => {
             setCurrentUser(user.id)
+            navigate('/', { replace: true })
           })
         } else {
           res.json().then(errors => {
@@ -47,11 +49,11 @@ function Login() {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
-        <input type='text' name='username' value={username} onChange={handleUsernameChange}/>
+        <input type='text' name='username' value={loginForm.username} onChange={handleFormChange}/>
         <label>Password</label>
-        <input type='password' name='password' value={password} onChange={handlePasswordChange}/>
+        <input type='password' name='password' value={loginForm.password} onChange={handleFormChange}/>
         <label>Confirm Password</label>
-        <input type='password' name='passwordConfirm' value={passwordConfirm} onChange={handlePasswordConfirmChange}/>
+        <input type='password' name='passwordConfirm' value={loginForm.passwordConfirm} onChange={handleFormChange}/>
         <input type='submit' />
       </form>
     </div>
