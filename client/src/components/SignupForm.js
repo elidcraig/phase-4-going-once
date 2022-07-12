@@ -11,8 +11,6 @@ function SignupForm() {
   const setCurrentUser = useSetRecoilState(currentUserState)
   const resetSignupForm = useResetRecoilState(signupFormState)
 
-  console.log(signupForm)
-
   const handleFormChange = e => setSignupForm({ ...signupForm, [e.target.name]: e.target.value })
   
   const handleFormSubmit = e => {
