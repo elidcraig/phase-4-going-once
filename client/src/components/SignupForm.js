@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { signupFormState } from '../state/SignupFormState';
 import { currentUserState } from '../state/CurrentUserState'
 
@@ -9,6 +9,7 @@ function SignupForm() {
 
   const [signupForm, setSignupForm] = useRecoilState(signupFormState)
   const setCurrentUser = useSetRecoilState(currentUserState)
+  const resetSignupForm = useResetRecoilState(signupFormState)
 
   console.log(signupForm)
 
@@ -37,7 +38,7 @@ function SignupForm() {
       .then(res => {
         if (res.ok) {
           res.json().then(user => {
-            //clear signup form
+            resetSignupForm()
             setCurrentUser(user.id)
             navigate('/dashboard', { replace: true })
           })

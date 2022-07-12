@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { loginFormState } from '../state/LoginFormState'
 import { currentUserState } from '../state/CurrentUserState'
 
@@ -9,6 +9,7 @@ function LoginForm() {
 
   const [loginForm, setLoginForm] = useRecoilState(loginFormState)
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+  const resetLoginForm = useResetRecoilState(loginFormState)
 
   const handleFormChange = e => setLoginForm({...loginForm, [e.target.name]: e.target.value})
 
@@ -32,7 +33,7 @@ function LoginForm() {
       .then(res => {
         if (res.ok) {
           res.json().then(user => {
-            //clear login form
+            resetLoginForm()
             setCurrentUser(user.id)
             navigate('/dashboard', { replace: true })
           })
