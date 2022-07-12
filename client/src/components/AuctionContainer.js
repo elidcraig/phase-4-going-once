@@ -1,7 +1,7 @@
 import { React, useEffect } from 'react';
 import AuctionCard from './AuctionCard'
 import { useRecoilState } from 'recoil'
-import { itemsState } from './state/CardState'
+import { itemsState } from '../state/CardState'
 
 
 function AuctionContainer () {

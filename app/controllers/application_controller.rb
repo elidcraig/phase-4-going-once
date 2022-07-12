@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
-  #wrap_parameters false
+  wrap_parameters false
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_resp
   rescue_from ActiveRecord::RecordInvalid, with: :not_valid_resp

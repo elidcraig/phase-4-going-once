@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.permit(:name, :description, :image_url, :starting_bid, :starting_time, :closing_time, :user_id)
+    params.permit(:name, :description, :image_url, :starting_bid, :category, :starting_time, :closing_time, :user_id)
   end
 
 

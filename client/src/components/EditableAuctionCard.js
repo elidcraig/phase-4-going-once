@@ -6,6 +6,22 @@ import { itemsState } from '../state/CardState'
 
 function AuctionCard({ name, id, image_url, description, starting_bid, closing_time, starting_time }) {
 
+const setItems = useSetRecoilState(itemsState)
+
+function deleteAuctionItem(deletedItem){
+    const updatedAuctionItem = cardDetails.filter( auctionItem => auctionItem.id !== deletedItem.id)
+    setItems(updatedAuctionItem)
+    console.log(updatedAuctionItem)
+}
+
+function handleDelete() {
+    fetch(`/items/${id}`, {
+        method: "DELETE"
+    })
+    .then((r) => r.json())
+    .then((deletedItem) => deleteAuctionItem(deletedItem))
+}
+
 return (
     <div className="card">
         <Link to="/details" style={{ textDecoration: 'none' }}>
