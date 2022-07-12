@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 
-  # before_action :find_user, only: [:show, :update, :destroy]
+  before_action :current_user, only: [:show]
 
   def index
     render json: User.all
   end
   
   def show
-    if current_user
-      render json: current_user
+    if @current_user
+      render json: @current_user
     else
       render json: { errors: ["Unauthorized action"] }, status: 401
     end
