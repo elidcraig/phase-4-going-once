@@ -8,6 +8,7 @@ import Search from "./Search";
 import Account from "./Account";
 import UserBids from "./UserBids";
 import "./App.css";
+import Login from './Login';
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 				<Route exact path="new-item" element={<Search />} />
 				<Route exact path="search" element={<Search />} />
 				<Route exact path="account" element={<Account />} />
+				<Route exact path="login" element={<Login />}/>
 			</Routes>
       <Navbar />
 	  </RecoilRoot>
