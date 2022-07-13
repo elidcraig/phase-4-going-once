@@ -13,6 +13,7 @@ import Explore from "./Explore";
 import Account from "./Account";
 import Dashboard from "./Dashboard";
 import NewItemForm from "./NewItemForm";
+import Details from "./Details";
 import Login from "./Login";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
 				<Route exact path="dashboard" element={<Dashboard />} />
 				<Route exact path="new-item" element={<NewItemForm />} />
 				<Route exact path="explore" element={<Explore />} />
+				<Route exact path="details" element={<Details />} />
 				<Route exact path="account" element={<Account />} />
 				<Route exact path="login" element={<Login />} />
 			</Routes>

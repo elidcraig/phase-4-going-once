@@ -1,12 +1,14 @@
 import { React, useEffect } from 'react';
 import AuctionCard from './AuctionCard'
-import { useRecoilState } from 'recoil'
-import { itemsState } from '../state/CardState'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { itemsState, itemsByNameAndCatState } from '../state/CardState'
 
 
 function AuctionContainer () {
 
     const [items, setItems] = useRecoilState(itemsState)
+    const filteredItems = useRecoilValue(itemsByNameAndCatState)
+
 
     useEffect (() => {fetch ( '/items' )
     .then(res => {
@@ -20,7 +22,8 @@ function AuctionContainer () {
     })
     }, [])
 
-    const itemDisplay = items.map((item) => <AuctionCard key={item.id} item={item}/>)
+    const itemDisplay = filteredItems.map((item) => <AuctionCard key={item.id} item={item}/>)
+
     
     return (
         <div className = "item-display">

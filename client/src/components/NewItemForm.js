@@ -37,13 +37,22 @@ function NewItemForm() {
             }
         
         fetch("/items", config)
-        .then(resp => resp.json())
-        .then((newItem) => {
-            // addItem(newItem)
-            resetForm()
-            navigate('/dashboard', { replace: true })
+        .then(resp => {
+            if (resp.ok) {
+              resp.json().then(user => {
+                resetForm()
+                navigate('/dashboard', { replace: true })
+              })
+            } 
+            else 
+            {
+              resp.json().then(errors => {
+                console.error(errors)
+              })
+            }
         })
     }
+        
 
     const handleChange = (event) => {
         setNewItem({
@@ -52,7 +61,7 @@ function NewItemForm() {
         })
     }
 
-    const selectCategory = ["Digital Art", "Metal Sculpture", "Oil Painting", "Sketch", "Stone Sculpture", "Woodwork" ]
+    const selectCategory = ["", "Digital Art", "Metal Sculpture", "Oil Painting", "Sketch", "Stone Sculpture", "Woodwork", "Other" ]
 return (
     <div>
         <h2> Add New Item to Auction </h2>        
@@ -67,8 +76,9 @@ return (
             <input name="starting_bid" className="form-starting-bid" value={newItem.starting_bid} onChange={handleChange} placeholder="Starting Bid:" /><br/><br/>
             Start the Bidding:
             <input name="starting_time" className="form-starting-time" value={newItem.starting_time} onChange={handleChange} placeholder="Starting Date and Time:" /><br/><br/>            
-            
-            <select  name="category" onChange={handleChange}>
+            Close the Bidding:
+            <input name="closing_time" className='form-closing-time' value={newItem.closing_time} onChange={handleChange} placeholder='Closing Date and Time:' /><br/><br/>
+            <select name="category" onChange={handleChange} value={newItem.category}>
                 {selectCategory.map(category => <option value={category} key={category}> {category}</option>)}
             </select>
             

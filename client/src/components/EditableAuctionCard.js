@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-
-// import { itemsState } from '../state/CardState'
+import { useRecoilState } from "recoil";
 import { isNotLiveState } from "../state/IsLiveState";
 
 function EditableAuctionCard({ item }) {
@@ -11,9 +9,8 @@ function EditableAuctionCard({ item }) {
 
 	// const itemList = useRecoilValue(itemsState)
 	// const setItems = useSetRecoilState(itemsState)
-
-	const notLiveItems = useRecoilValue(isNotLiveState);
-	const setNotLiveItems = useSetRecoilState(isNotLiveState);
+  
+  const [notLiveItems, setNotLiveItems] = useRecoilState(isNotLiveState)
 
 	function deleteAuctionItem() {
 		// const updatedMainItemList = itemList.filter( auctionItem => auctionItem.id !== id)
@@ -37,30 +34,22 @@ function EditableAuctionCard({ item }) {
 		);
 	}
 
-	return (
-		<div className="card">
-			<Link to="/details" style={{ textDecoration: "none" }}>
-				<h2 name={id}> {name}</h2>
-			</Link>
-			<Link to="/details" style={{ textDecoration: "none" }}>
-				<img
-					src={image_url}
-					alt={name}
-					name={id}
-					className="item-picture"
-					style={{ cursor: "pointer" }}
-				/>
-			</Link>
-			<div className="item-details-section">
-				<p className="item-description">{description}</p>
-			</div>
-			<div class Name="bid-details">
-				<p>$ {starting_bid} </p>
-			</div>
-			{/* <button onClick={handleEdit}>Edit</button> */}
-			<button onClick={handleDelete}>Delete</button>
-		</div>
-	);
+return (
+    <div className="card">
+        <h2 name={id}> {name}</h2>
+        <img src={image_url} alt={name} name={id} className="item-picture" style={{cursor:"pointer"}}/>
+        <div className="item-details-section">
+        <p className="item-description">
+            { description }
+        </p>
+        </div>
+        <div class Name="bid-details" >
+            <p>$ { starting_bid } </p>
+        </div>
+        {/* <button onClick={handleEdit}>Edit</button> */}
+        <button onClick={handleDelete}>Delete</button>
+    </div>
+)
 }
 
 export default EditableAuctionCard;
