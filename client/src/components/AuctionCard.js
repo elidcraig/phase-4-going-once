@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-function AuctionCard({ name, id, image_url, description, starting_bid, closing_time, starting_time }) {
+function AuctionCard({item}) {
+  const { name, id, image_url, description, starting_bid, closing_time, starting_time } = item
 
 return (
     <div className="card">
