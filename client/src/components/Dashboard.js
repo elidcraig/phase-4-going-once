@@ -6,15 +6,16 @@ import AuctionCard from './AuctionCard'
 import EditableAuctionCard from './EditableAuctionCard'
 // import { currentUserState } from '../state/CurrentUserState'
 import {isLiveState, isNotLiveState } from '../state/IsLiveState'
+
 function Dashboard() {
 
   const navigate = useNavigate()
 
   const [userInfo, setUserInfo] = useRecoilState(dashboardState)
+  
   const liveItems = useRecoilValue(isLiveState)
   const notLiveItems = useRecoilValue(isNotLiveState)
   const [isLoaded, setIsLoaded] = useState(false)
-
 
   useEffect(() => {
     fetch(`/dashboard`)
@@ -53,9 +54,9 @@ function Dashboard() {
       {liveItemCards}
       <h2>Non Live Items:</h2> 
       {nonLiveItemCards}
-
     </div>
   )
 }
 
 export default Dashboard
+
