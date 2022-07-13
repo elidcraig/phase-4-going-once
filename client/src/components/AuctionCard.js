@@ -17,7 +17,7 @@ return (
             { description }
         </p>
         </div>
-        <div class Name="bid-details" >
+        <div className="bid-details" >
             <p> { starting_bid } </p>
         </div>
         <div className="bid-timer" >

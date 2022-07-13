@@ -4,4 +4,3 @@ export const dashboardState = atom({
   key: 'Dashboard',
   default: {}
 })
-
