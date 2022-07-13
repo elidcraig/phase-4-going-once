@@ -6,7 +6,7 @@ import AuctionCard from './AuctionCard'
 import EditableAuctionCard from './EditableAuctionCard'
 // import { currentUserState } from '../state/CurrentUserState'
 import {isLiveState, isNotLiveState } from '../state/IsLiveState'
-function UserBids() {
+function Dashboard() {
 
   const navigate = useNavigate()
 
@@ -58,4 +58,4 @@ function UserBids() {
   )
 }
 
-export default UserBids
+export default Dashboard
