@@ -4,22 +4,24 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 
 function Account() {
 
-  const userId = useRecoilValue(currentUserState)
-  const [fullUser, setFullUser] = useRecoilState(currentFullUserState)
-  const [isLoaded, setIsLoaded] = useState(false)
+  // const userId = useRecoilValue(currentUserState)
+  // const [fullUser, setFullUser] = useRecoilState(currentFullUserState)
+  // const [isLoaded, setIsLoaded] = useState(false)
 
-  useEffect (() => {fetch ( 'me' )
-  .then ( (r) => r.json() )
-  .then ( user => { 
-    console.log(user)
-    setFullUser(user)
-    setIsLoaded(true)
-  })
-  }, [])
+  // useEffect (() => {fetch ( 'me' )
+  // .then ( (r) => r.json() )
+  // .then ( user => { 
+  //   console.log(user)
+  //   setFullUser(user)
+  //   setIsLoaded(true)
+  // })
+  // }, [])
+  const fullUser = useRecoilValue(currentFullUserState)
 
+  if (fullUser === null) {
+    return <p>Loading...</p>;
+  }
 
-
-  if (!isLoaded) return <h1>Loading...</h1>
   const {username, email, avatar_url, full_name, address} = fullUser
   console.log(fullUser)
 
