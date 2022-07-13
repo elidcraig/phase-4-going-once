@@ -63,15 +63,15 @@ return (
         <h2> Add New Item to Auction </h2>        
         <form onSubmit={handleSubmit}>
             Name:
-            <input name="name" class="form-title" value={newItem.name} onChange={handleChange} placeholder='Name: '/><br/><br/>
+            <input name="name" className="form-title" value={newItem.name} onChange={handleChange} placeholder='Name: '/><br/><br/>
             Description:
-            <input name="description" class="form-description" value={newItem.description} onChange={handleChange} placeholder="Description:" /><br/><br/>
+            <input name="description" className="form-description" value={newItem.description} onChange={handleChange} placeholder="Description:" /><br/><br/>
             Image:
-            <input name="image_url" class="form-image" value={newItem.image_url} onChange={handleChange} placeholder="Link to Image:" /><br/><br/>
+            <input name="image_url" className="form-image" value={newItem.image_url} onChange={handleChange} placeholder="Link to Image:" /><br/><br/>
             Starting Bid:
-            <input name="starting_bid" class="form-starting-bid" value={newItem.starting_bid} onChange={handleChange} placeholder="Starting Bid:" /><br/><br/>
+            <input name="starting_bid" className="form-starting-bid" value={newItem.starting_bid} onChange={handleChange} placeholder="Starting Bid:" /><br/><br/>
             Start the Bidding:
-            <input name="starting_time" class="form-starting-time" value={newItem.starting_time} onChange={handleChange} placeholder="Starting Date and Time:" /><br/><br/>            
+            <input name="starting_time" className="form-starting-time" value={newItem.starting_time} onChange={handleChange} placeholder="Starting Date and Time:" /><br/><br/>            
             
             <select  name="category" onChange={handleChange}>
                 {selectCategory.map(category => <option value={category}> {category}</option>)}

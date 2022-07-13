@@ -13,7 +13,7 @@ function AuctionContainer () {
     .then ( setItems )
     }, [])
 
-    const itemDisplay = items.map((item) => <AuctionCard key={item.id} />)
+    const itemDisplay = items.map((item) => <AuctionCard key={item.id} {...item}/>)
     
     return (
         <div className = "item-display">

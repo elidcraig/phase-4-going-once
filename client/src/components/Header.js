@@ -4,13 +4,15 @@ function Header() {
   return (
     <div>
       <NavLink to="/">
-				Logo of site name here &nbsp &nbsp
+				Logo here
 			</NavLink>
+      <span>&nbsp;&nbsp;</span>
       <NavLink to="/login">
-				Login/Signup &nbsp &nbsp
+				Login/Signup
 			</NavLink>
+      <span>&nbsp;&nbsp;</span>
       <NavLink to="account">
-				<button>Account - Profile avatar icon here</button>
+				Profile icon here 
 			</NavLink>
     </div>
   )
