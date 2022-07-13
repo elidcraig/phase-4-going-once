@@ -9,7 +9,7 @@ function Navbar() {
 			<NavLink to="new-item">
 				<button>New Auction</button>
 			</NavLink>
-			<NavLink to="search">
+			<NavLink to="explore">
 				<button>Explore</button>
 			</NavLink>
 		</div>
