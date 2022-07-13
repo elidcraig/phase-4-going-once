@@ -2,15 +2,15 @@ import { atom, selector } from 'recoil'
 import { searchState } from './SearchState'
 import { categoryState } from './CategoryState'
 
+export const detailsState = atom ({
+    key: "detailsState",
+    default: ''
+});
+
 export const itemsState = atom({ 
     key: "itemsState",
     default: []
 });
-
-// export const auctionState = atom ({
-//     key: "auctionState",
-//     default: ''
-// });
 
 const itemsByNameState = selector({
     key: 'itemsByName',

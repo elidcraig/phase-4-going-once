@@ -33,12 +33,8 @@ const setItems = useSetRecoilState(itemsState)
 
 return (
     <div className="card">
-        <Link to="/details" style={{ textDecoration: 'none' }}>
         <h2 name={id}> {name}</h2>
-        </Link>
-        <Link to="/details" style={{ textDecoration: 'none' }}>
         <img src={image_url} alt={name} name={id} className="item-picture" style={{cursor:"pointer"}}/>
-        </Link>
         <div className="item-details-section">
         <p className="item-description">
             { description }
