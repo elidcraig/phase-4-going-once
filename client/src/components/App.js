@@ -1,13 +1,12 @@
 import "./App.css";
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Routes, Route } from "react-router-dom";
-import { RecoilRoot } from "recoil";
 import Home from './Home'
 import Header from './Header';
 import Navbar from './Navbar'
-import Search from "./Search";
+import Explore from "./Explore";
 import Account from "./Account";
-import UserBids from "./UserBids";
+import Dashboard from "./Dashboard";
 import NewItemForm from './NewItemForm'
 import Login from './Login';
 
@@ -17,9 +16,9 @@ function App() {
 	    <Header />
 			<Routes>
 				<Route exact path="/" element={<Home />} />
-				<Route exact path="dashboard" element={<UserBids />} />
+				<Route exact path="dashboard" element={<Dashboard />} />
 				<Route exact path="new-item" element={<NewItemForm />} />
-				<Route exact path="search" element={<Search />} />
+				<Route exact path="explore" element={<Explore />} />
 				<Route exact path="account" element={<Account />} />
 				<Route exact path="login" element={<Login />}/>
 			</Routes>
