@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import { itemsState } from '../state/CardState'
 
 function AuctionCard({ name, id, image_url, description, starting_bid, closing_time, starting_time }) {
 

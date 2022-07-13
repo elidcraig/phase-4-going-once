@@ -12,9 +12,6 @@ function Navbar() {
 			<NavLink to="explore">
 				<button>Explore</button>
 			</NavLink>
-			<NavLink to="account">
-				<button>Account</button>
-			</NavLink>
 		</div>
 	);
 }
