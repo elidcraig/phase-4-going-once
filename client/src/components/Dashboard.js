@@ -5,7 +5,7 @@ import { dashboardState } from '../state/DashboardState.js'
 import AuctionCard from './AuctionCard'
 // import { currentUserState } from '../state/CurrentUserState'
 
-function UserBids() {
+function Dashboard() {
 
   const navigate = useNavigate()
 
@@ -48,4 +48,4 @@ function UserBids() {
   )
 }
 
-export default UserBids
+export default Dashboard
