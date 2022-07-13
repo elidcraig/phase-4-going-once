@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil'
 import { searchState } from './SearchState'
 import { categoryState } from './CategoryState'
 
-export const itemsState = atom ({ 
+export const itemsState = atom({ 
     key: "itemsState",
     default: []
 });

@@ -1,8 +1,13 @@
 import React from 'react'
+import { categoryState } from '../state/CategoryState'
+import { searchState } from '../state/SearchState'
+import AuctionContainer from './AuctionContainer'
 
 function Explore() {
   return (
-    <div>Explore</div>
+    <div className='explore'>
+      <AuctionContainer/>
+    </div>
   )
 }
 
