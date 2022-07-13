@@ -18,8 +18,7 @@ function LoginForm() {
     e.preventDefault()
     const config = {
       username: loginForm.username,
-      password: loginForm.password,
-      password_confirmation: loginForm.passwordConfirm
+      password: loginForm.password
     }
     console.log(config)
 
@@ -55,9 +54,7 @@ function LoginForm() {
         <input type='text' name='username' value={loginForm.username} onChange={handleFormChange}/>
         <label>Password</label>
         <input type='password' name='password' value={loginForm.password} onChange={handleFormChange}/>
-        {/* <label>Confirm Password</label>
-        <input type='password' name='passwordConfirm' value={loginForm.passwordConfirm} onChange={handleFormChange}/> */}
-        <input type='submit' />
+        <input type='submit'/>
       </form>
     </div>
   );
