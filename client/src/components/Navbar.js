@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
 	return (
 		<div>
-			<NavLink to="my-bids">
-				<button>My Bids</button>
+			<NavLink to="dashboard">
+				<button>Dashboard</button>
 			</NavLink>
 			<NavLink to="new-item">
 				<button>New Auction</button>
