@@ -4,7 +4,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { itemsState } from '../state/CardState'
 
-function AuctionCard({ name, id, image_url, description, starting_bid, closing_time, starting_time }) {
+function AuctionCard({ name, id, image_url, description, starting_bid }) {
 
 const setItems = useSetRecoilState(itemsState)
 
@@ -14,22 +14,22 @@ const setItems = useSetRecoilState(itemsState)
 //     console.log(updatedAuctionItem)
 // }
 
-function handleDelete() {
-    fetch(`/items/${id}`, {
-        method: "DELETE"
-    })
-    .then(res => {
-      if (res.ok) {
-        res.json().then((deletedItem) => {//deleteAuctionItem(deletedItem)
+// function handleDelete() {
+//     fetch(`/items/${id}`, {
+//         method: "DELETE"
+//     })
+//     .then(res => {
+//       if (res.ok) {
+//         res.json().then((deletedItem) => {//deleteAuctionItem(deletedItem)
 
-      })
-      } else {
-        res.json().then(errors => {
-          console.error(errors)
-        })
-      }
-    })
-}
+//       })
+//       } else {
+//         res.json().then(errors => {
+//           console.error(errors)
+//         })
+//       }
+//     })
+// }
 
 return (
     <div className="card">
@@ -48,7 +48,7 @@ return (
             <p> { starting_bid } </p>
         </div>
         {/* <button onClick={handleEdit}>Edit</button> */}
-        <button onClick={handleDelete}>Delete</button>
+        {/* <button onClick={handleDelete}>Delete</button> */}
     </div>
 )
 }
