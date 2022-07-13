@@ -5,7 +5,7 @@ export const itemsState = atom ({
     default: []
 });
 
-export const auctionState = atom ({
-    key: "auctionState",
+export const detailsState = atom ({
+    key: "detailsState",
     default: ''
 });

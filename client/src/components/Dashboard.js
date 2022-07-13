@@ -46,7 +46,7 @@ function Dashboard() {
   // const isItemLive = item  => (item.startingTime >= currentTime && item.closingTime <= currentTime)
   
   const liveItemCards = liveItems.map(item => <EditableAuctionCard key={item.id} {...item}/>)
-  const nonLiveItemCards = notLiveItems.map(item => <AuctionCard key={item.id} {...item}/>)
+  const nonLiveItemCards = notLiveItems.map(item => <AuctionCard key={item.id} item={item}/>)
 
   return (
     <div>
