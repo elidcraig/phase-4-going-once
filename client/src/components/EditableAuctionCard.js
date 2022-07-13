@@ -45,7 +45,7 @@ return (
         </p>
         </div>
         <div class Name="bid-details" >
-            <p> { starting_bid } </p>
+            <p>$ { starting_bid } </p>
         </div>
         {/* <button onClick={handleEdit}>Edit</button> */}
         {/* <button onClick={handleDelete}>Delete</button> */}

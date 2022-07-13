@@ -18,7 +18,7 @@ return (
         </p>
         </div>
         <div className="bid-details" >
-            <p> { starting_bid } </p>
+            <p>$ { starting_bid } </p>
         </div>
         <div className="bid-timer" >
             <p> { /*closing_time - starting_time*/ }</p>

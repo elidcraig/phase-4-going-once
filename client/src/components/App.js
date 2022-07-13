@@ -1,6 +1,11 @@
 import "./App.css";
-import React from "react";
+import { useEffect, useState, React } from "react";
 import { Routes, Route } from "react-router-dom";
+import {
+	currentUserState,
+	currentFullUserState,
+} from "../state/CurrentUserState";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Home from "./Home";
 import Header from "./Header";
 import Navbar from "./Navbar";
@@ -11,6 +16,20 @@ import NewItemForm from "./NewItemForm";
 import Login from "./Login";
 
 function App() {
+	const [fullUser, setFullUser] = useRecoilState(currentFullUserState);
+	const [currentUserId, setCurrentUserId] = useRecoilState(currentUserState);
+
+	useEffect(() => {
+		fetch("me").then((res) => {
+			if (res.ok) {
+				res.json().then((user) => {
+					setFullUser(user);
+					setCurrentUserId(user.id);
+				});
+			}
+		});
+	}, []);
+
 	return (
 		<div className="App">
 			<Header />

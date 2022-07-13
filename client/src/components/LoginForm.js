@@ -1,18 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { loginFormState } from '../state/LoginFormState'
-import { currentUserState } from '../state/CurrentUserState'
+import { currentUserState, currentFullUserState} from '../state/CurrentUserState'
 
 function LoginForm() {
   let navigate = useNavigate()
 
   const [loginForm, setLoginForm] = useRecoilState(loginFormState)
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+  // const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
   const resetLoginForm = useResetRecoilState(loginFormState)
 
   const handleFormChange = e => setLoginForm({...loginForm, [e.target.name]: e.target.value})
-
+  const writeUserId = useSetRecoilState(currentUserState)
+  const writeFullUser = useSetRecoilState(currentFullUserState)
   const handleSubmit = e => {
     e.preventDefault()
     const config = {
@@ -34,7 +35,8 @@ function LoginForm() {
         if (res.ok) {
           res.json().then(user => {
             resetLoginForm()
-            setCurrentUser(user.id)
+            writeUserId(user.id)
+            writeFullUser(user)
             navigate('/dashboard', { replace: true })
           })
         } else {
@@ -53,8 +55,8 @@ function LoginForm() {
         <input type='text' name='username' value={loginForm.username} onChange={handleFormChange}/>
         <label>Password</label>
         <input type='password' name='password' value={loginForm.password} onChange={handleFormChange}/>
-        <label>Confirm Password</label>
-        <input type='password' name='passwordConfirm' value={loginForm.passwordConfirm} onChange={handleFormChange}/>
+        {/* <label>Confirm Password</label>
+        <input type='password' name='passwordConfirm' value={loginForm.passwordConfirm} onChange={handleFormChange}/> */}
         <input type='submit' />
       </form>
     </div>

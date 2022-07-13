@@ -1,25 +1,19 @@
 import React from 'react'
-
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useNavigate } from 'react-router-dom'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { newItemState } from '../state/NewItemState'
 import { currentUserState } from '../state/CurrentUserState'
 
 function NewItemForm() {
 
     const currentUserId = useRecoilValue(currentUserState)
-
-    const initialItem = {
-        user_id: '',
-        name: '',
-        description: '',
-        image_url: '',
-        starting_bid: '',
-        starting_time: '',
-        closing_time: '',
-        category: ''
-        }
-
+    let navigate = useNavigate()
+    
     const [newItem, setNewItem] = useRecoilState(newItemState)
+    const resetForm = useResetRecoilState(newItemState)
+    if (currentUserId === null) {
+      return <p>Loading...</p>;
+    }
         
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -46,7 +40,8 @@ function NewItemForm() {
         .then(resp => resp.json())
         .then((newItem) => {
             // addItem(newItem)
-            setNewItem(initialItem)
+            resetForm()
+            navigate('/dashboard', { replace: true })
         })
     }
 
@@ -74,7 +69,7 @@ return (
             <input name="starting_time" className="form-starting-time" value={newItem.starting_time} onChange={handleChange} placeholder="Starting Date and Time:" /><br/><br/>            
             
             <select  name="category" onChange={handleChange}>
-                {selectCategory.map(category => <option value={category}> {category}</option>)}
+                {selectCategory.map(category => <option value={category} key={category}> {category}</option>)}
             </select>
             
             <input className="form-button" type="submit" value="Submit"/>
