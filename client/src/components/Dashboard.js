@@ -22,7 +22,6 @@ function Dashboard() {
         .then(res => {
           if (res.ok) {
             res.json().then(user => {
-              console.log(user)
               setUserInfo(user)
               setIsLoaded(true)
             })
@@ -45,8 +44,10 @@ function Dashboard() {
   // const currentTime = new Date()
   // const isItemLive = item  => (item.startingTime >= currentTime && item.closingTime <= currentTime)
   
-  const liveItemCards = liveItems.map(item => <EditableAuctionCard key={item.id} {...item}/>)
-  const nonLiveItemCards = notLiveItems.map(item => <AuctionCard key={item.id} item={item}/>)
+
+  const liveItemCards = liveItems.map(item => <AuctionCard key={item.id} item={item}/>)
+  const nonLiveItemCards = notLiveItems.map(item => <EditableAuctionCard key={item.id} item={item}/>)
+
 
   return (
     <div>

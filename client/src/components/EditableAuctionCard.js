@@ -1,35 +1,38 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { isNotLiveState } from "../state/IsLiveState";
 
-import { itemsState } from '../state/CardState'
+function EditableAuctionCard({ item }) {
+	const {
+		name, id, image_url, description, starting_bid, closing_time, starting_time } = item;
 
-function AuctionCard({ name, id, image_url, description, starting_bid }) {
+	// const itemList = useRecoilValue(itemsState)
+	// const setItems = useSetRecoilState(itemsState)
+  
+  const [notLiveItems, setNotLiveItems] = useRecoilState(isNotLiveState)
 
-const setItems = useSetRecoilState(itemsState)
+	function deleteAuctionItem() {
+		// const updatedMainItemList = itemList.filter( auctionItem => auctionItem.id !== id)
+		// setItems(updatedMainItemList)
+		// console.log(updatedMainItemList)
 
-// function deleteAuctionItem(deletedItem){
-//     const updatedAuctionItem = cardDetails.filter( auctionItem => auctionItem.id !== deletedItem.id)
-//     setItems(updatedAuctionItem)
-//     console.log(updatedAuctionItem)
-// }
+		const updatedUserItemList = notLiveItems.filter(
+			(auctionItem) => auctionItem.id !== id
+		);
+		setNotLiveItems(updatedUserItemList);
+		console.log(updatedUserItemList);
+	}
 
-// function handleDelete() {
-//     fetch(`/items/${id}`, {
-//         method: "DELETE"
-//     })
-//     .then(res => {
-//       if (res.ok) {
-//         res.json().then((deletedItem) => {//deleteAuctionItem(deletedItem)
-
-//       })
-//       } else {
-//         res.json().then(errors => {
-//           console.error(errors)
-//         })
-//       }
-//     })
-// }
+	function handleDelete() {
+		fetch(`/items/${id}`, {
+			method: "DELETE",
+		}).then((res) =>
+			res.ok
+				? res.json().then(deleteAuctionItem(id))
+				: res.json().then((errors) => console.error(errors))
+		);
+	}
 
 return (
     <div className="card">
@@ -44,9 +47,9 @@ return (
             <p>$ { starting_bid } </p>
         </div>
         {/* <button onClick={handleEdit}>Edit</button> */}
-        {/* <button onClick={handleDelete}>Delete</button> */}
+        <button onClick={handleDelete}>Delete</button>
     </div>
 )
 }
 
-export default AuctionCard
+export default EditableAuctionCard;

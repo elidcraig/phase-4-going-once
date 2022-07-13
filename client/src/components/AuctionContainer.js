@@ -9,13 +9,21 @@ function AuctionContainer () {
     const [items, setItems] = useRecoilState(itemsState)
     const filteredItems = useRecoilValue(itemsByNameAndCatState)
 
-    useEffect (() => {
-        fetch ( '/items' )
-        .then ( (r) => r.json() )
-        .then ( setItems )
+
+    useEffect (() => {fetch ( '/items' )
+    .then(res => {
+      if (res.ok) {
+        res.json().then(setItems)
+      } else {
+        res.json().then(errors => {
+          console.error(errors)
+        })
+      }
+    })
     }, [])
 
     const itemDisplay = filteredItems.map((item) => <AuctionCard key={item.id} item={item}/>)
+
     
     return (
         <div className = "item-display">
