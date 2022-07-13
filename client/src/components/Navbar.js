@@ -3,14 +3,14 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
 	return (
 		<div>
-			<NavLink to="my-bids">
-				<button>My Bids</button>
+			<NavLink to="dashboard">
+				<button>Dashboard</button>
 			</NavLink>
 			<NavLink to="new-item">
 				<button>New Auction</button>
 			</NavLink>
-			<NavLink to="search">
-				<button>Search</button>
+			<NavLink to="explore">
+				<button>Explore</button>
 			</NavLink>
 			<NavLink to="account">
 				<button>Account</button>
