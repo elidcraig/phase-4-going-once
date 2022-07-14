@@ -25,13 +25,13 @@ return (
         <Link to="/details" style={{ textDecoration: 'none' }}>
         <img src={image_url} alt={name} name={id} className="auction-image" style={{cursor:"pointer"}} onClick={handleClick}/>
         </Link>
-        {/* <div className="item-details-section">
+        <div className="item-details-section">
         <p className="item-description">
             { description }
         </p>
         </div>
         <div className="bid-details" >
-            <p>$ { starting_bid } </p> {/*this will be replaced by the current winning bid */}
+            <p>$ { starting_bid } </p>
         </div>
         <div className="bid-timer" >
         {active<=0 ? <p>Remaining Time: <Timer start={starting_time} end={closing_time} /></p> : <p>This auction has not started</p>}
