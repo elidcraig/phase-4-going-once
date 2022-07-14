@@ -21,7 +21,7 @@ const biddingIsOpen = startingTime <= currentTime && closingTime >= currentTime
 const userOwnsItem = currentUser.id === user.id
 
 const handleOpenBidForm = () => {
-    setMakingBid(true)
+    setMakingBid(!makingBid)
     setNewBid(highest_current_bid + 1)
 }
 
@@ -71,7 +71,7 @@ const handleBidSubmit = e => {
         </form>
         <button 
             style={userOwnsItem || !biddingIsOpen ? {display: 'none'} : {}} onClick={handleOpenBidForm}
-        >Make A Bid!</button>
+        >{makingBid ? 'Cancel Bid' : 'Make A Bid!'}</button>
     </div>
     )
 }
