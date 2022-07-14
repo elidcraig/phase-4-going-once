@@ -12,6 +12,11 @@ const currentUser = useRecoilValue(currentFullUserState)
 
 const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, user} = item
 
+const startingTime = new Date(starting_time)
+const closingTime = new Date(closing_time)
+const currentTime = new Date()
+const biddingIsOpen = startingTime <= currentTime && closingTime >= currentTime
+
 const userOwnsItem = currentUser.id === user.id
 
 const handleClick = () => {
@@ -37,7 +42,7 @@ return (
         <div className="bid-timer" >
             <p> { /*closing_time - starting_time*/ }</p>
         </div>
-        <button style={userOwnsItem ? {display: 'none'} : {}}>Make A Bid!</button>
+        <button style={userOwnsItem || !biddingIsOpen ? {display: 'none'} : {}}>Make A Bid!</button>
     </div>
 )
 }

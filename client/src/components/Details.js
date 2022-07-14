@@ -8,7 +8,13 @@ const currentUser = useRecoilValue(currentFullUserState)
 const item = useRecoilValue(detailsState)
 const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, user} = item
 
+const startingTime = new Date(starting_time)
+const closingTime = new Date(closing_time)
+const currentTime = new Date()
+const biddingIsOpen = startingTime <= currentTime && closingTime >= currentTime
+
 const userOwnsItem = currentUser.id === user.id
+
 
     return (
     <div className = "profile">
@@ -20,7 +26,7 @@ const userOwnsItem = currentUser.id === user.id
             <li><strong>Current Bid:</strong> {starting_bid}</li>
             <li><strong>Bidding Ends On:</strong> {closing_time}</li>
         </ul>
-        <button style={userOwnsItem ? {display: 'none'} : {}}>Make A Bid!</button>
+        <button style={userOwnsItem || !biddingIsOpen ? {display: 'none'} : {}}>Make A Bid!</button>
     </div>
   //)}
   //else {
