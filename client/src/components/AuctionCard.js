@@ -19,9 +19,7 @@ const biddingIsOpen = startingTime <= currentTime && closingTime >= currentTime
 
 const userOwnsItem = currentUser.id === user.id
 
-const handleClick = () => {
-    setDetails(item)
-}
+const handleClick = () => setDetails(item)
 
 return (
     <div className="card">

@@ -1,9 +1,14 @@
-import React from 'react'
-import { useRecoilValue } from 'recoil'
+import React, { useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { detailsState } from '../state/CardState'
 import { currentFullUserState } from '../state/CurrentUserState'
+import { newBidState } from '../state/NewBidState'
 
 function Details() {
+
+const [makingBid, setMakingBid] = useState(false)  
+
+const [newBid, setNewBid] = useRecoilState(newBidState)
 const currentUser = useRecoilValue(currentFullUserState)
 const item = useRecoilValue(detailsState)
 const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, user} = item
@@ -14,6 +19,14 @@ const currentTime = new Date()
 const biddingIsOpen = startingTime <= currentTime && closingTime >= currentTime
 
 const userOwnsItem = currentUser.id === user.id
+
+const handleOpenBidForm = () => {
+    setMakingBid(true)
+    setNewBid(starting_bid)
+}
+
+const handleBidChange = e => setNewBid(e.target.value)
+
 
 
     return (
@@ -26,12 +39,17 @@ const userOwnsItem = currentUser.id === user.id
             <li><strong>Current Bid:</strong> {starting_bid}</li>
             <li><strong>Bidding Ends On:</strong> {closing_time}</li>
         </ul>
-        <button style={userOwnsItem || !biddingIsOpen ? {display: 'none'} : {}}>Make A Bid!</button>
+        <form 
+            className='new-bid-form'
+            style={makingBid ? {} : {display: 'none'}}
+        >
+            <input type="number" name='newBid' value={newBid} onChange={handleBidChange}/>
+        </form>
+        <button 
+            style={userOwnsItem || !biddingIsOpen ? {display: 'none'} : {}}
+            onClick={handleOpenBidForm}
+        >Make A Bid!</button>
     </div>
-  //)}
-  //else {
-  //    return (<h1>This Auction is not live!</h1>)
-  //}
     )
 }
 
