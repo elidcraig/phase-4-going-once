@@ -76,7 +76,7 @@ return (
             <input name="starting_bid" className="form-starting-bid" value={editedItem.starting_bid} onChange={updateFormData} placeholder="Starting Bid:" /><br/><br/>
             Start the Bidding:
             <input name="starting_time" className="form-starting-time" value={editedItem.starting_time} onChange={updateFormData} placeholder="Starting Date and Time:" /><br/><br/>
-            
+            <input name="closing_time" className='form-closing-time' value={newItem.closing_time} onChange={handleChange} placeholder='Closing Date and Time:' /><br/><br/>            
             <select  name="category" onChange={updateFormData}>
                 {selectCategory.map(category => <option value={category} key={category}> {category}</option>)}
             </select>
