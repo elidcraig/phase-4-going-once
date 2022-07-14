@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import React, { useState, useEffect } from 'react'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { detailsState } from '../state/CardState'
-import { currentFullUserState } from '../state/CurrentUserState'
+import { currentUserState, currentFullUserState } from '../state/CurrentUserState'
 import { newBidState } from '../state/NewBidState'
+import { currentBidState, newBidState } from '../state/BidState'
+import Timer from './Timer'
 
 function Details() {
 
