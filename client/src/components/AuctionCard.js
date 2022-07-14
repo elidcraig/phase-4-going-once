@@ -1,18 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { detailsState} from '../state/CardState'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { detailsState } from '../state/CardState'
+import { currentFullUserState } from '../state/CurrentUserState'
 
 
 function AuctionCard({item}) {
 
 const [details, setDetails] = useRecoilState(detailsState)
+const currentUser = useRecoilValue(currentFullUserState)
 
-const {name, id, image_url, description, category, starting_bid, closing_time, starting_time} = item
+const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, user} = item
 
-    const handleClick = () => {
-        setDetails(item)
-    }
+const userOwnsItem = currentUser.id === user.id
+
+const handleClick = () => {
+    setDetails(item)
+}
 
 return (
     <div className="card">
@@ -33,6 +37,7 @@ return (
         <div className="bid-timer" >
             <p> { /*closing_time - starting_time*/ }</p>
         </div>
+        <button style={userOwnsItem ? {display: 'none'} : {}}>Make A Bid!</button>
     </div>
 )
 }
