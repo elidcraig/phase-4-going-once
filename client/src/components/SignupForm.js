@@ -2,13 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { signupFormState } from '../state/SignupFormState';
-import { currentUserState } from '../state/CurrentUserState'
+import { currentUserState, currentFullUserState } from '../state/CurrentUserState'
 
 function SignupForm() {
   const navigate = useNavigate()
 
   const [signupForm, setSignupForm] = useRecoilState(signupFormState)
-  const setCurrentUser = useSetRecoilState(currentUserState)
+  const writeUserId = useSetRecoilState(currentUserState)
+  const writeFullUser = useSetRecoilState(currentFullUserState)
   const resetSignupForm = useResetRecoilState(signupFormState)
 
   const handleFormChange = e => setSignupForm({ ...signupForm, [e.target.name]: e.target.value })
@@ -37,7 +38,8 @@ function SignupForm() {
         if (res.ok) {
           res.json().then(user => {
             resetSignupForm()
-            setCurrentUser(user.id)
+            writeUserId(user.id)
+            writeFullUser(user)
             navigate('/dashboard', { replace: true })
           })
         } else {

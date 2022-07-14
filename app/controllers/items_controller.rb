@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
   def update
     @item.update!(item_params)
-    render json: item, status: :accepted
+    render json: @item, status: :accepted
   end
 
   def destroy

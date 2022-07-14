@@ -5,9 +5,11 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 
 function Account() {
   const navigate = useNavigate()
-  // const userId = useRecoilValue(currentUserState)
+
+  const userId = useRecoilValue(currentUserState)
   const [fullUser, setFullUser] = useRecoilState(currentFullUserState)
   const resetFullUser = useResetRecoilState(currentFullUserState)
+  const resetUserId = useResetRecoilState(currentUserState)
   // const [isLoaded, setIsLoaded] = useState(false)
 
   // useEffect (() => {fetch ( 'me' )
@@ -22,18 +24,18 @@ function Account() {
   const handleLogout = () => {
     fetch('/logout', {method: 'DELETE'})
     .then(res => {
-      if (res.ok) {res.json().then(() => {
+      if (res.ok) {
         resetFullUser()
+        resetUserId()
         navigate('/', {replace: true})
-      })
       } else {
         res.json().then(error => console.error(error))
       }
     })
   }
-
+  
   if (fullUser === null) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>
   }
 
   const {username, email, avatar_url, full_name, address} = fullUser

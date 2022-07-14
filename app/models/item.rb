@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_many :bids, dependent: :destroy
   has_many :bidders, through: :bids, source: :user
 
-  validates :category, presence: true
+  # validates :category, presence: true
 
   def highest_current_bid
     if self.bids.empty?
