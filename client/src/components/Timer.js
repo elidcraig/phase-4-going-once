@@ -42,7 +42,7 @@ useEffect (() => {
 
     return (
         <div className="timer">
-            <h4>{days} Days {hours} Hours {minutes} Minutes {seconds} Seconds</h4>
+            <h4>Remaining Time: {days} Days {hours} Hours {minutes} Minutes {seconds} Seconds</h4>
         </div>
     )
 

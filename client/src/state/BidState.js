@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
 
 export const newBidState = atom({
-    key: 'newBidState',
+    key: 'NewBid',
     default: {
       user_id: '',
       item_id: '',
@@ -10,6 +10,6 @@ export const newBidState = atom({
 })
 
 export const currentBidState = atom({
-    key: 'currentBidState',
+    key: 'CurrentBid',
     default: ''
 })
