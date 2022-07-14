@@ -11,28 +11,28 @@ function EditItemForm() {
     let { itemId } = useParams();
     const [editedItem, setEditedItem] = useState(null)
     // const resetForm = useResetRecoilState({ user_id: '', name: '', description: '', image_url: '', starting_bid: '', starting_time: '', closing_time: '', category: '' })
-
-  
-useEffect(() => {
-  fetch(`items/${itemId}`)
-  .then(res => {
-    if (res.ok) {
-      res.json().then(setEditedItem)
-    } else {
-      res.json().then(errors => {
-        console.error(errors)
+    console.log(itemId)
+    useEffect(() => {
+      fetch(`/items/${itemId}`)
+      .then(res => {
+        if (res.ok) {
+          res.json().then(setEditedItem)
+        } else {
+          res.json().then(errors => {
+            console.error(errors)
+          })
+        }
       })
-    }
-  })
-  }, [])
-
-
+    }, [])
+    
+    
+    if (itemId === undefined) {return <h1>Loading1...</h1>}
 
     if (currentUserId === null) {
-      return <p>Loading...</p>;
+      return <p>Loading2...</p>;
     }
     if (editedItem === null) {
-      return <p>Loading...</p>;
+      return <p>Loading3...</p>;
     }
         
     const handleSubmit = (event) => {

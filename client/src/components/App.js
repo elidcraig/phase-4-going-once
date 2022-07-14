@@ -22,7 +22,7 @@ function App() {
 	const [currentUserId, setCurrentUserId] = useRecoilState(currentUserState);
 
 	useEffect(() => {
-		fetch("me").then((res) => {
+		fetch("/me").then((res) => {
 			if (res.ok) {
 				res.json().then((user) => {
 					setFullUser(user);
@@ -39,7 +39,7 @@ function App() {
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="dashboard" element={<Dashboard />} />
 				<Route exact path="new-item" element={<NewItemForm />} />
-				<Route exact path="edit-item/:id" element={<EditItemForm />} />
+				<Route path="edit-item/:itemId" element={<EditItemForm />} />
 				<Route exact path="explore" element={<Explore />} />
 				<Route exact path="details" element={<Details />} />
 				<Route exact path="account" element={<Account />} />
