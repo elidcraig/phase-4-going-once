@@ -39,7 +39,7 @@ function NewItemForm() {
         fetch("/items", config)
         .then(resp => {
             if (resp.ok) {
-              resp.json().then(user => {
+              resp.json().then(() => {
                 resetForm()
                 navigate('/dashboard', { replace: true })
               })

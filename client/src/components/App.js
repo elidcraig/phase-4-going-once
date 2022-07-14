@@ -15,6 +15,7 @@ import Dashboard from "./Dashboard";
 import NewItemForm from "./NewItemForm";
 import Details from "./Details";
 import Login from "./Login";
+import EditItemForm from "./EditItemForm";
 
 function App() {
 	const [fullUser, setFullUser] = useRecoilState(currentFullUserState);
@@ -38,6 +39,7 @@ function App() {
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="dashboard" element={<Dashboard />} />
 				<Route exact path="new-item" element={<NewItemForm />} />
+				<Route exact path="edit-item/:id" element={<EditItemForm />} />
 				<Route exact path="explore" element={<Explore />} />
 				<Route exact path="details" element={<Details />} />
 				<Route exact path="account" element={<Account />} />

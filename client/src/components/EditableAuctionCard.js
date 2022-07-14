@@ -44,9 +44,11 @@ return (
         </p>
         </div>
         <div class Name="bid-details" >
-            <p>$ { starting_bid } </p>
+            <p>$ { starting_bid } </p> {/*this will be replaced by the current winning bid */}
         </div>
-        {/* <button onClick={handleEdit}>Edit</button> */}
+        <Link to={`/edit-item/${id}`} style={{ textDecoration: 'none' }}>
+            <button>Edit</button>
+        </Link>
         <button onClick={handleDelete}>Delete</button>
     </div>
 )
