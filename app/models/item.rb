@@ -13,4 +13,12 @@ class Item < ApplicationRecord
     end
   end
 
+  def is_closed?
+    self.closing_time <= Time.now
+  end
+
+  # def is_winning_bidder?(user_id)
+  #   self.bids.order(:amount)
+  # end
+
 end
