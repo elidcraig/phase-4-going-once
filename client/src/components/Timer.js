@@ -11,14 +11,11 @@ function Timer({ start, end}) {
 let interval;
 
 const startTimer = () => {
-//    const countDownDate = new Date().getTime();
     const endTime = new Date(end)
     const startTime = new Date (start)
 
-   console.log(endTime)
    if(startTime <= Date.now()) {
     interval = setInterval(() => {
-        // const now = new Date().getTime();
         const remainingTime = endTime - Date.now()
 
         const days = Math.floor(remainingTime / (24 * 60 * 60 * 1000))
@@ -28,7 +25,6 @@ const startTimer = () => {
 
         if (remainingTime < 0) {
             clearInterval(interval.current);
-            
         }
         else {
             setDays(days)
@@ -40,26 +36,10 @@ const startTimer = () => {
      }
     }
 
-
 useEffect (() => {
     startTimer();
 });
 
-// useEffect(() => {
-
-//     interval = setInterval(() => {
-
-//     setSeconds(seconds+1)
-
-//     if(seconds === 59) {
-//         setMinutes(minutes+1)
-//         setSeconds(0)
-//     }
-// },1000)
-
-// return() => clearInterval(interval);
-
-// });
     return (
         <div className="timer">
             <h4>{days} Days {hours} Hours {minutes} Minutes {seconds} Seconds</h4>
