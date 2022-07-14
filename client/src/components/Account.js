@@ -22,9 +22,12 @@ function Account() {
   const handleLogout = () => {
     fetch('/logout', {method: 'DELETE'})
     .then(res => {
-      if (res.ok) {
+      if (res.ok) {res.json().then(() => {
         resetFullUser()
         navigate('/', {replace: true})
+      })
+      } else {
+        res.json().then(error => console.error(error))
       }
     })
   }
