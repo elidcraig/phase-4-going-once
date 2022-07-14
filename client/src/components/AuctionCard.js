@@ -29,10 +29,10 @@ return (
         <p className="item-description">
             { description }
         </p>
-        </div> */}
-        {/* <div className="bid-details" >
-            <p>$ { starting_bid } </p>
-        </div> */}
+        </div>
+        <div className="bid-details" >
+            <p>$ { starting_bid } </p> {/*this will be replaced by the current winning bid */}
+        </div>
         <div className="bid-timer" >
         {active<=0 ? <p>Remaining Time: <Timer start={starting_time} end={closing_time} /></p> : <p>This auction has not started</p>}
         </div>

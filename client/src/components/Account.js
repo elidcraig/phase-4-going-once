@@ -1,11 +1,13 @@
 import {useEffect, useState, React } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { currentUserState, currentFullUserState } from '../state/CurrentUserState'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 
 function Account() {
-
+  const navigate = useNavigate()
   // const userId = useRecoilValue(currentUserState)
-  // const [fullUser, setFullUser] = useRecoilState(currentFullUserState)
+  const [fullUser, setFullUser] = useRecoilState(currentFullUserState)
+  const resetFullUser = useResetRecoilState(currentFullUserState)
   // const [isLoaded, setIsLoaded] = useState(false)
 
   // useEffect (() => {fetch ( 'me' )
@@ -16,7 +18,19 @@ function Account() {
   //   setIsLoaded(true)
   // })
   // }, [])
-  const fullUser = useRecoilValue(currentFullUserState)
+
+  const handleLogout = () => {
+    fetch('/logout', {method: 'DELETE'})
+    .then(res => {
+      if (res.ok) {res.json().then(() => {
+        resetFullUser()
+        navigate('/', {replace: true})
+      })
+      } else {
+        res.json().then(error => console.error(error))
+      }
+    })
+  }
 
   if (fullUser === null) {
     return <p>Loading...</p>;
@@ -34,7 +48,7 @@ function Account() {
       <img src={avatar_url} alt="avatar" className="account-avatar-display" />
       <h4>full name: {full_name}</h4>
       <h4>address: {address}</h4>
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
 
   )
