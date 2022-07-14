@@ -28,7 +28,9 @@ export const isLiveState = selector ({
     }
       return postedItems.filter(item =>{ 
         const {starting_time: startingTime, closing_time: closingTime} = item
-        return !(new Date(startingTime) <= currentTime && new Date(closingTime) >= currentTime)})
+        // return !(new Date(startingTime) <= currentTime && new Date(closingTime) >= currentTime)
+        return (currentTime <= new Date(startingTime))
+      })
   }});
 
   export const closedAuctionsState = selector({
