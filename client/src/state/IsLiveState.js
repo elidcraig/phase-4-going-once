@@ -10,11 +10,11 @@ export const isLiveState = selector ({
     const userInfo = get(dashboardState)
     const {posted_items: postedItems} = userInfo
     if (postedItems === undefined) {
-      return <p>Loading...</p>;
+      return [];
     }
       return postedItems.filter(item =>{ 
         const {starting_time: startingTime, closing_time: closingTime} = item
-        return (startingTime <= currentTime && closingTime >= currentTime)})
+        return (new Date(startingTime) <= currentTime && new Date(closingTime) >= currentTime)})
   }});
 
   export const isNotLiveState = selector ({
@@ -24,9 +24,20 @@ export const isLiveState = selector ({
     const userInfo = get(dashboardState)
     const {posted_items: postedItems} = userInfo
     if (postedItems === undefined) {
-      return <p>Loading...</p>;
+      return [];
     }
       return postedItems.filter(item =>{ 
         const {starting_time: startingTime, closing_time: closingTime} = item
-        return !(startingTime <= currentTime && closingTime >= currentTime)})
+        return !(new Date(startingTime) <= currentTime && new Date(closingTime) >= currentTime)})
   }});
+
+  export const liveListState = atom({
+    key: 'LiveList',
+    default: []
+  })
+  
+  export const notLiveListState = atom({
+    key: 'NotLiveList',
+    default: []
+  })
+  

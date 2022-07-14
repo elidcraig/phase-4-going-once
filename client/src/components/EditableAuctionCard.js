@@ -1,38 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { isNotLiveState } from "../state/IsLiveState";
+// import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { notLiveListState } from "../state/IsLiveState";
 
 function EditableAuctionCard({ item }) {
-	const {
-		name, id, image_url, description, starting_bid, closing_time, starting_time } = item;
+	const { name, id, image_url, description, starting_bid, closing_time, starting_time } = item;
+  let navigate = useNavigate()
 
-	// const itemList = useRecoilValue(itemsState)
-	// const setItems = useSetRecoilState(itemsState)
-  
-  const [notLiveItems, setNotLiveItems] = useRecoilState(isNotLiveState)
+const [notLiveItems, setNotLiveItems] = useRecoilState(notLiveListState)
 
-	function deleteAuctionItem() {
-		// const updatedMainItemList = itemList.filter( auctionItem => auctionItem.id !== id)
-		// setItems(updatedMainItemList)
-		// console.log(updatedMainItemList)
+    if (id === undefined) {return <h1>Loading...</h1>}
 
-		const updatedUserItemList = notLiveItems.filter(
-			(auctionItem) => auctionItem.id !== id
-		);
-		setNotLiveItems(updatedUserItemList);
-		console.log(updatedUserItemList);
-	}
+    function deleteAuctionItem() {
+      const updatedUserItemList = notLiveItems.filter(
+        (auctionItem) => auctionItem.id !== id
+      );
+      setNotLiveItems(updatedUserItemList);
+      console.log(updatedUserItemList);
+      navigate(`/dashboard`, { replace: true }) 
+    }
 
 	function handleDelete() {
 		fetch(`/items/${id}`, {
 			method: "DELETE",
 		}).then((res) =>
-			res.ok
-				? res.json().then(deleteAuctionItem(id))
-				: res.json().then((errors) => console.error(errors))
+			res.ok ? deleteAuctionItem() :
+      res.json().then((errors) => console.error(errors))
 		);
 	}
+const handleClickEdit = () => navigate(`/edit-item/${id}`, { replace: true })
 
 return (
     <div className="card">
@@ -43,10 +41,12 @@ return (
             { description }
         </p>
         </div>
-        <div class Name="bid-details" >
-            <p>$ { starting_bid } </p>
+        <div className="bid-details" >
+            <p>$ { starting_bid } </p> {/*this will be replaced by the current winning bid */}
         </div>
-        {/* <button onClick={handleEdit}>Edit</button> */}
+        {/* <Link to={`/edit-item/${id}`} style={{ textDecoration: 'none' }}> */}
+            <button onClick={handleClickEdit}>Edit</button>
+        {/* </Link> */}
         <button onClick={handleDelete}>Delete</button>
     </div>
 )
