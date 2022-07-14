@@ -12,7 +12,7 @@ const [currentBid, setCurrentBid] = useRecoilState(currentBidState)
 const [newBid, setNewBid] = useRecoilState(newBidState)
 const resetForm = useResetRecoilState(newBidState)
 const currentUserId = useRecoilValue(currentUserState)
-const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, highest_current_bid, formatted_closing_time, formatted_starting_time} = item
+const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, highest_current_bid, formatted_closing_time, formatted_starting_time, user} = item
 
 const active = new Date (starting_time) - Date.now()
 
@@ -72,31 +72,17 @@ const handleChange = (event) => {
             <li><strong>Current Bid:</strong> {currentBid}</li>
             <li><strong>Bidding Ends On:</strong> {formatted_closing_time}</li>
         </ul>
-        {active<=0 ? <div><Timer start={starting_time} end={closing_time} />
-                <label>Make your bid: </label>
-                <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .05)} </button>
-                <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .10)} </button>
-                <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .15)} </button>
-                <form onSubmit={handleSubmit}>
-                    Custom Bid:
-                <input name="amount" value={newBid.amount} placeholder="$$$" onChange={handleChange}/>
-                <input className="form-button" type="submit" value="Submit"/>
-                </form></div>
+        {active<=0 ? 
+        <div><Timer start={starting_time} end={closing_time} />
+            <label>Make your bid: </label>
+            { currentUserId === user.id ? null :
+            <form onSubmit={handleSubmit}>
+                  <input name="amount" value={newBid.amount} placeholder="$$$" onChange={handleChange}/>
+                  <input className="form-button" type="submit" value="Submit"/>
+            </form>}
+        </div>
         : <p>This auction will start at: {formatted_starting_time}</p>}
-        {/* <label>Make your bid: </label>
-        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .05)} </button>
-        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .10)} </button>
-        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .15)} </button>
-        <form onSubmit={handleSubmit}>
-            Custom Bid:
-        <input name="amount" value={newBid.amount} placeholder="$$$" onChange={handleChange}/>
-        <input className="form-button" type="submit" value="Submit"/>
-        </form> */}
     </div>
-  //)}
-  //else {
-  //    return (<h1>This Auction is not live!</h1>)
-  //}
     )
 }
 
