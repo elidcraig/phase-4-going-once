@@ -31,6 +31,20 @@ export const isLiveState = selector ({
         return !(new Date(startingTime) <= currentTime && new Date(closingTime) >= currentTime)})
   }});
 
+  export const closedAuctionsState = selector({
+    key: 'closedAuctions',
+    get: ({get}) => {
+      const currentTime = new Date()
+      const userInfo = get(dashboardState)
+      const { posted_items: postedItems } = userInfo
+      if (postedItems === undefined) {
+        return []
+      } else {
+        return postedItems.filter(item => new Date(item.closing_time) <= currentTime)
+      }
+    }
+  })
+
   export const liveListState = atom({
     key: 'LiveList',
     default: []
