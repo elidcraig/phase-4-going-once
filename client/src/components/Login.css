@@ -1,6 +1,23 @@
-.login-form {
-  
+/* .login-form {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #e9faff;
 }
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+} */
+
 
 .login-form input, label {
   display: block;

@@ -14,6 +14,8 @@ const resetForm = useResetRecoilState(newBidState)
 const currentUserId = useRecoilValue(currentUserState)
 const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, highest_current_bid} = item
 
+const active = new Date (starting_time) - Date.now()
+
 useEffect (() => {
     console.log(highest_current_bid)
     setCurrentBid(highest_current_bid)
@@ -60,18 +62,28 @@ const handleChange = (event) => {
     })
 }
     return (
-    <div className = "profile">
+    <div className = "details">
         <h2>{name}</h2>
         <img src={image_url} alt={name}/>
-        <ul className="first-profile-ul">
+        <ul className="details-ul">
             <li><strong>Description:</strong> {description}</li>
             <li><strong>Category:</strong> {category}</li>
             <li><strong>Starting Bid:</strong> {starting_bid}</li>
             <li><strong>Current Bid:</strong> {currentBid}</li>
             <li><strong>Bidding Ends On:</strong> {closing_time}</li>
         </ul>
-        <Timer start={starting_time} end={closing_time} />
-        <label>Make your bid: </label>
+        {active<=0 ? <div><p>Remaining Time: <Timer start={starting_time} end={closing_time} /></p>
+                <label>Make your bid: </label>
+                <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .05)} </button>
+                <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .10)} </button>
+                <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .15)} </button>
+                <form onSubmit={handleSubmit}>
+                    Custom Bid:
+                <input name="amount" value={newBid.amount} placeholder="$$$" onChange={handleChange}/>
+                <input className="form-button" type="submit" value="Submit"/>
+                </form></div>
+        : <p>This auction has not started</p>}
+        {/* <label>Make your bid: </label>
         <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .05)} </button>
         <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .10)} </button>
         <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .15)} </button>
@@ -79,7 +91,7 @@ const handleChange = (event) => {
             Custom Bid:
         <input name="amount" value={newBid.amount} placeholder="$$$" onChange={handleChange}/>
         <input className="form-button" type="submit" value="Submit"/>
-        </form>
+        </form> */}
     </div>
   //)}
   //else {

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { loginFormState } from '../state/LoginFormState'
 import { currentUserState, currentFullUserState} from '../state/CurrentUserState'
+import './Login.css'
 
 function LoginForm() {
   let navigate = useNavigate()

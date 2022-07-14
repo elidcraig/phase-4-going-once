@@ -23,8 +23,8 @@ function NewItemForm() {
             description: newItem.description,
             image_url: newItem.image_url,
             starting_bid: newItem.starting_bid,
-            starting_time: newItem.starting_time,
-            closing_time: newItem.closing_time,
+            starting_time: new Date(newItem.starting_time),
+            closing_time: new Date(newItem.closing_time),
             category: newItem.category
         }
 
