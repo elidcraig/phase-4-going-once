@@ -17,7 +17,7 @@ const {name, id, image_url, description, category, starting_bid, closing_time, s
 return (
     <div className="card">
         <Link to="/details" style={{ textDecoration: 'none' }}>
-        <h2 name={id} onClick={handleClick}> {name}</h2>
+        <h2 name={id} style={{cursor:"pointer"}} onClick={handleClick}> {name}</h2>
         </Link>
         <Link to="/details" style={{ textDecoration: 'none' }}>
         <img src={image_url} alt={name} name={id} className="item-picture" style={{cursor:"pointer"}} onClick={handleClick}/>
