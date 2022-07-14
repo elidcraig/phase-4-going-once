@@ -12,19 +12,13 @@ const [currentBid, setCurrentBid] = useRecoilState(currentBidState)
 const [newBid, setNewBid] = useRecoilState(newBidState)
 const resetForm = useResetRecoilState(newBidState)
 const currentUserId = useRecoilValue(currentUserState)
-const {name, id, image_url, description, category, starting_bid, closing_time, starting_time} = item
+const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, highest_current_bid} = item
 
-useEffect (() => {fetch ( `bids/${id}` )
-  .then ( (r) => r.json() )
-  .then ( bid => { 
-    console.log(bid)
-    setCurrentBid(bid)
-  })
-  }, [])
-
-  const {user_id, item_id, amount} = currentBid
-
-
+useEffect (() => {
+    console.log(highest_current_bid)
+    setCurrentBid(highest_current_bid)
+  }, [] )
+  
 const handleSubmit = (event) => {
     event.preventDefault()
     const postBid = {
@@ -44,9 +38,9 @@ const handleSubmit = (event) => {
     fetch("/bids", config)
     .then(resp => {
         if (resp.ok) {
-          resp.json().then(user => {
+          resp.json().then(bid => {
             resetForm()
-            //navigate('/details', { replace: true })
+            setCurrentBid(bid.amount)
           })
         } 
         else 
@@ -73,14 +67,14 @@ const handleChange = (event) => {
             <li><strong>Description:</strong> {description}</li>
             <li><strong>Category:</strong> {category}</li>
             <li><strong>Starting Bid:</strong> {starting_bid}</li>
-            <li><strong>Current Bid:</strong> {amount}</li>
+            <li><strong>Current Bid:</strong> {currentBid}</li>
             <li><strong>Bidding Ends On:</strong> {closing_time}</li>
         </ul>
         <Timer start={starting_time} end={closing_time} />
         <label>Make your bid: </label>
-        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {amount + (amount * .05)} </button>
-        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {amount + (amount * .10)} </button>
-        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {amount + (amount * .15)} </button>
+        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .05)} </button>
+        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .10)} </button>
+        <button name="amount" value={newBid.amount} onChange={handleChange} onClick={handleSubmit}> {currentBid + (currentBid * .15)} </button>
         <form onSubmit={handleSubmit}>
             Custom Bid:
         <input name="amount" value={newBid.amount} placeholder="$$$" onChange={handleChange}/>

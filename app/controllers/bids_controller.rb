@@ -28,11 +28,14 @@ class BidsController < ApplicationController
   private
 
   def find_bid
-    @bid = Bid.find_by_item_id(params[:id] )
+    @bid = Bid.find(params[:id])
   end
 
   def bid_params
     params.permit(:item_id, :user_id, :amount)
   end
+
+
+
 
 end

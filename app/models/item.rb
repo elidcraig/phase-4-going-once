@@ -5,4 +5,12 @@ class Item < ApplicationRecord
 
   validates :category, presence: true
 
+  def highest_current_bid
+    if self.bids.empty?
+      starting_bid
+    else
+      self.bids.maximum(:amount)
+    end
+  end
+
 end
