@@ -12,12 +12,21 @@ export const itemsState = atom({
     default: []
 });
 
+const openItemsState = selector({
+    key: 'openItems',
+    get: ({get}) => {
+        const currentTime = new Date()
+        const allItems = get(itemsState)
+        return allItems.filter(item => currentTime <= new Date(item.closing_time))
+    }
+})
+
 const itemsByNameState = selector({
     key: 'itemsByName',
     get: ({get}) => {
-        const allItems = get(itemsState)
+        const openItems = get(openItemsState)
         const search = get(searchState)
-        return allItems.filter(item => {
+        return openItems.filter(item => {
             if(search === '') {
                 return true
             } else{

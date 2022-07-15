@@ -13,7 +13,6 @@ class Item < ApplicationRecord
     end
   end
 
-
   # def formatted_starting_time
   #   self.starting_time.strftime("%A, %m/%d/%y %l:%M %p")
   # end
@@ -21,5 +20,14 @@ class Item < ApplicationRecord
   # def formatted_closing_time
   #   self.closing_time.strftime("%A, %m/%d/%y %l:%M %p")
   # end
+
+  def is_closed?
+    self.closing_time <= Time.now
+  end
+
+  def is_winning_bidder?(user_id)
+    winning_bid = self.bids.order('amount DESC').first
+    winning_bid.user_id == user_id
+  end
 
 end

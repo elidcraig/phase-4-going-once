@@ -9,7 +9,8 @@ function AuctionCard({item}) {
 
 const [details, setDetails] = useRecoilState(detailsState)
 
-const {name, id, image_url, description, category, starting_bid, closing_time, starting_time} = item
+
+const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, highest_current_bid} = item
 
 const active = new Date (starting_time) - Date.now()
 
@@ -31,7 +32,7 @@ return (
         </p>
         </div>
         <div className="bid-details" >
-            <p>$ { starting_bid } </p>
+            <p>$ { highest_current_bid } </p>
         </div>
         <div className="bid-timer" >
         {active<=0 ? <Timer start={starting_time} end={closing_time} /> : <p>This auction has not started</p>}
