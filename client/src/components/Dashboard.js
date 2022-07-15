@@ -65,6 +65,7 @@ function Dashboard() {
   const liveItemCards = liveList.map(item => <AuctionCard key={item.id} item={item}/>)
   const nonLiveItemCards = notLiveList.map(item => <EditableAuctionCard key={item.id} item={item}/>)
   const closedAuctionCards = closedAuctions.map(item => <AuctionCard key={item.id} item={item}/>)
+  const wonAuctionCards = userInfo.won_auctions.map(item => <AuctionCard key={item.id} item={item}/>)
 
 
   return (
@@ -76,6 +77,7 @@ function Dashboard() {
       <h2>Closed Auctions:</h2>
       {closedAuctionCards}
       <h2>Winning Auctions</h2>
+      {wonAuctionCards}
     </div>
   )
 }
