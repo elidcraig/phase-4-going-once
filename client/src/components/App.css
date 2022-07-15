@@ -21,23 +21,3 @@
   width: 20px;
   height: 20px;
 }
-
-/* .nav-bar {
-  margin-top: 1vh;
-  height: 10vh;
-  width: 100vw;
-  background-color: rgb(255, 250, 208);
-  grid-row: 1;
-  grid-column: 1 / span 2;
-  display: inline-flex;
-  justify-content: flex-end;
-  position: relative;
-  margin-bottom: 15px;
-}
-.nav-bar img {
-  position: relative;
-  margin-top: 0vh;
-  left: 1vw;
-  height: 8vh;
-  padding: 15vw;
-} */
