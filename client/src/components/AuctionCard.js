@@ -35,7 +35,7 @@ return (
             <p>$ { highest_current_bid } </p>
         </div>
         <div className="bid-timer" >
-        {active<=0 ? <p>Remaining Time: <Timer start={starting_time} end={closing_time} /></p> : <p>This auction has not started</p>}
+        {active<=0 ? <Timer start={starting_time} end={closing_time} /> : <p>This auction has not started</p>}
         </div>
     </div>
 )
