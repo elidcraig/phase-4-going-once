@@ -12,7 +12,7 @@ function Explore() {
   const handleSearchChange = e => setSearch(e.target.value)
   const handleCategoryChange = e => setCategory(e.target.value)
 
-  const selectCategory = ["All", "Digital Art", "Metal Sculpture", "Oil Painting", "Sketch", "Stone Sculpture", "Woodwork"]
+  const selectCategory = ["All", "Digital Art", "Metal Sculpture", "Oil Painting", "Sketch", "Stone Sculpture", "Woodwork", "Other"]
 
   return (
     <div className='explore'>

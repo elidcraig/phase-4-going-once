@@ -3,6 +3,7 @@ import AuctionCard from './AuctionCard'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { highestBidItemState } from '../state/CardState'
 
+
 function Home() {
 
 
@@ -33,6 +34,7 @@ console.log(displayItem)
 
   return (
     <div>
+      <img  src="https://i.imgur.com/32TMUTg.jpg"/>
       <h1>
         Welcome to Veilingen
       </h1>
