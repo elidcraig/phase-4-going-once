@@ -1,23 +1,35 @@
 
-
 .auction-card {
-  text-align: center;
-  background-color: rgb(255, 255, 255);
-  color: rgb(255, 203, 114);
+display: flex;
+justify-content: center;
+}
+
+.details-ul {
+  list-style-type: none;
+}
+
+/* .clock {
+  position: relative;
+  margin: a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3px;
+  width: 10px;
+}
+
+.section section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
-  width: 12rem;
-  height: 22rem;
-  display: inline-grid;
-  margin: 1rem 2rem;
 }
 
-.auction-image {
-  justify-self: center;
-  height: 11rem;
-  max-width: 100%;
+.section section p {
+  font-size: 5px;
 }
 
-.avatar {
-  width: 20px;
-  height: 20px;
-}
+.section section small {
+font-size: 3px;
+} */
