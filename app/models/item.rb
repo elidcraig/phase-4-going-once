@@ -17,8 +17,9 @@ class Item < ApplicationRecord
     self.closing_time <= Time.now
   end
 
-  # def is_winning_bidder?(user_id)
-  #   self.bids.order(:amount)
-  # end
+  def is_winning_bidder?(user_id)
+    winning_bid = self.bids.order('amount DESC').first
+    winning_bid.user_id == user_id
+  end
 
 end

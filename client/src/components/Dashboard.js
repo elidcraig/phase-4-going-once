@@ -4,6 +4,7 @@ import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil'
 import { dashboardState } from '../state/DashboardState.js'
 import AuctionCard from './AuctionCard'
 import EditableAuctionCard from './EditableAuctionCard'
+import WonCard from './WonCard'
 // import { currentUserState } from '../state/CurrentUserState'
 import {isLiveState, isNotLiveState, liveListState, notLiveListState, closedAuctionsState } from '../state/IsLiveState'
 
@@ -65,6 +66,7 @@ function Dashboard() {
   const liveItemCards = liveList.map(item => <AuctionCard key={item.id} item={item}/>)
   const nonLiveItemCards = notLiveList.map(item => <EditableAuctionCard key={item.id} item={item}/>)
   const closedAuctionCards = closedAuctions.map(item => <AuctionCard key={item.id} item={item}/>)
+  const wonAuctionCards = userInfo.won_auctions.map(item => <WonCard key={item.id} item={item}/>)
 
 
   return (
@@ -76,6 +78,7 @@ function Dashboard() {
       <h2>Closed Auctions:</h2>
       {closedAuctionCards}
       <h2>Winning Auctions</h2>
+      {wonAuctionCards}
     </div>
   )
 }
