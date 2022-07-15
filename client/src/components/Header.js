@@ -2,22 +2,39 @@ import React from 'react'
 import { NavLink } from "react-router-dom";
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '../state/CurrentUserState'
+import { currentFullUserState } from '../state/CurrentUserState'
 
 function Header() {
 
   const currentUserId = useRecoilValue(currentUserState)
+  const currentFullUser = useRecoilValue(currentFullUserState)
+
+  
+console.log(currentUserId)
+console.log("checking for User")
+
+console.log(currentFullUser)
 
   return (
-    <div>
+    <header>
+      <nav className="nav-bar">
       <NavLink to="/">
-				Logo here
+				<img  src="https://i.imgur.com/32TMUTg.jpg"/>
 			</NavLink>
       <span>&nbsp;&nbsp;</span>
-      {currentUserId ?
-        <NavLink to="/account" >Profile</NavLink> : 
+      {currentFullUser ?
+        <div>
+        <NavLink to="/account" >
+          { currentFullUser.username }
+          <img className="avatar" src={ currentFullUser.image_url }/> 
+        </NavLink>
+        
+        </div>
+        : 
         <NavLink to="/login">Login/Signup</NavLink>
       }
-    </div>
+      </nav>
+    </header>
   )
 }
 

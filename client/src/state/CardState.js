@@ -5,12 +5,17 @@ import { categoryState } from './CategoryState'
 export const detailsState = atom ({
     key: "detailsState",
     default: ''
-});
+})
 
 export const itemsState = atom({ 
     key: "itemsState",
     default: []
-});
+})
+
+export const highestBidItemState = atom({ 
+    key: "highestBidItemState",
+    default: ''
+})
 
 const openItemsState = selector({
     key: 'openItems',

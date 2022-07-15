@@ -3,14 +3,15 @@ class Item < ApplicationRecord
   has_many :bids, dependent: :destroy
   has_many :bidders, through: :bids, source: :user
 
-  # validates :category, presence: true
+  validates :category, presence: true
 
-  def highest_current_bid
-    if self.bids.empty?
-      starting_bid
-    else
-      self.bids.maximum(:amount)
-    end
+
+  def self.most_bids_item
+    self.all.max_by(&:most_bids_id)
+  end
+
+  def most_bids_id
+    self.bids.pluck(:item_id)
   end
 
   # def formatted_starting_time
@@ -20,6 +21,14 @@ class Item < ApplicationRecord
   # def formatted_closing_time
   #   self.closing_time.strftime("%A, %m/%d/%y %l:%M %p")
   # end
+  
+  def highest_current_bid
+    if self.bids.empty?
+      starting_bid
+    else
+      self.bids.maximum(:amount)
+    end
+  end
 
   def is_closed?
     self.closing_time <= Time.now
