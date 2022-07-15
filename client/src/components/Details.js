@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { format } from 'date-fns'
 import { useRecoilValue, useRecoilState, useResetRecoilState } from 'recoil'
 import { detailsState } from '../state/CardState'
 import { currentUserState } from '../state/CurrentUserState'
@@ -12,10 +13,11 @@ const [currentBid, setCurrentBid] = useRecoilState(currentBidState)
 const [newBid, setNewBid] = useRecoilState(newBidState)
 const resetForm = useResetRecoilState(newBidState)
 const currentUserId = useRecoilValue(currentUserState)
-const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, highest_current_bid, formatted_closing_time, formatted_starting_time, user} = item
+const {name, id, image_url, description, category, starting_bid, closing_time, starting_time, highest_current_bid, user} = item
 
 const active = new Date (starting_time) - Date.now()
-
+const formatted_starting_time = format(new Date (starting_time), 'Ppp')
+const formatted_closing_time = format(new Date (closing_time), 'Ppp')
 useEffect (() => {
     console.log(highest_current_bid)
     setCurrentBid(highest_current_bid)
