@@ -24,6 +24,10 @@ class ItemsController < ApplicationController
     head :no_content
   end
 
+  def home
+    render json: Item.most_bids_item
+  end
+
 
   private
 
@@ -34,7 +38,6 @@ class ItemsController < ApplicationController
   def item_params
     params.permit(:name, :description, :image_url, :starting_bid, :category, :starting_time, :closing_time, :user_id)
   end
-
 
 
 
