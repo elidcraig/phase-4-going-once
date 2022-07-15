@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :username, :email, presence: true, uniqueness: true
 
   def won_auctions
-    # self.items
+    myId = self.id
+    self.items.select(&:is_closed?).select {|item| item.is_winning_bidder?(myId)}
   end
 end
